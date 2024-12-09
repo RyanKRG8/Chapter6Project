@@ -2,6 +2,10 @@
 #include <iomanip>
 using namespace std;
 
+// This program when ran will ask the user to enter the length and width of the rectangle that they're trying to get the area of.
+// Once the user inputs the measurements it will then display them the perimeter and the area of the rectangle. 
+// After the results are displayed it will then ask the user if they want to run another calculation.
+
 void getLengthWidth(double& length, double& width);
 double calcPerimeter(double length, double width);
 double calcArea(double length, double width);
@@ -58,14 +62,17 @@ void getLengthWidth(double& length, double& width) {
     } while (width < 0);
 }
 
+// Calculates the perimeter
 double calcPerimeter(double length, double width) {
     return 2 * (length + width);
 }
 
+// Calculates the area
 double calcArea(double length, double width) {
     return length * width;
 }
 
+// Displays the calculations 
 void displayProperties(double perimeter, double area) {
     cout << "\nRectangle Properties:" << endl;
     cout << "Perimeter: " << perimeter << endl;
