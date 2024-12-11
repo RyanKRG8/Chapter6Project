@@ -1,71 +1,30 @@
 #include <iostream>
-#include <string>
+#include <iomanip>
 using namespace std;
 
 // Function prototypes
-void getRegInfo(string& regionName, int& numAccidents);
-bool isLower(int value1, int value2);
-void showLowest(const string& regionName, int numAccidents);
+double fahrenheitToCelsius(double fahrenheit);
+void displayTempTable();
 
 int main() {
-    cout << "Safest Driving Area" << endl;
-
-    // Store region information
-    string north = "North", south = "South", east = "East", west = "West", central = "Central";
-    int northAccidents, southAccidents, eastAccidents, westAccidents, centralAccidents;
-
-    // Get the accident data for each region
-    getRegInfo(north, northAccidents);
-    getRegInfo(south, southAccidents);
-    getRegInfo(east, eastAccidents);
-    getRegInfo(west, westAccidents);
-    getRegInfo(central, centralAccidents);
-
-    // Check what region has the lowest amount of accidents
-    string safestRegion = north;
-    int lowestAccidents = northAccidents;
-
-    if (isLower(southAccidents, lowestAccidents)) {
-        safestRegion = south;
-        lowestAccidents = southAccidents;
-    }
-    if (isLower(eastAccidents, lowestAccidents)) {
-        safestRegion = east;
-        lowestAccidents = eastAccidents;
-    }
-    if (isLower(westAccidents, lowestAccidents)) {
-        safestRegion = west;
-        lowestAccidents = westAccidents;
-    }
-    if (isLower(centralAccidents, lowestAccidents)) {
-        safestRegion = central;
-        lowestAccidents = centralAccidents;
-    }
-
-    // Display the safest region
-    showLowest(safestRegion, lowestAccidents);
-
+    cout << "Celsius Temperature Table" << endl;
+    displayTempTable();
     return 0;
 }
 
-// Get region name and number of accidents
-void getRegInfo(string& regionName, int& numAccidents) {
-    do {
-        cout << "Enter the amount of accidents reported in the " << regionName << " region: " << endl;
-        cin >> numAccidents;
-
-        if (numAccidents < 0) {
-            cout << "Invalid input. Please enter a number higher than 0." << endl;
-        }
-    } while (numAccidents < 0);
+// Convert Fahrenheit to Celsius
+double fahrenheitToCelsius(double fahrenheit) {
+    return (fahrenheit - 32) * 5.0 / 9.0;
 }
 
-// Checks if 1 regiona dn lower or higher than the other
-bool isLower(int value1, int value2) {
-    return value1 < value2;
-}
+// Display the temp table
+void displayTempTable() {
+    cout << fixed << setprecision(2); // Format output to 2 decimal places
+    cout << "Fahrenheit     Celsius" << endl;
+    cout << "-----------------------" << endl;
 
-// Shows what region is the lowest
-void showLowest(const string& regionName, int numAccidents) {
-    cout << "The safest driving area is: " << regionName << " (" << numAccidents << " accidents.)" << endl;
+    for (int fahrenheit = 0; fahrenheit <= 20; ++fahrenheit) {
+        double celsius = fahrenheitToCelsius(fahrenheit);
+        cout << fahrenheit << "\t\t" << celsius << endl;
+    }
 }
